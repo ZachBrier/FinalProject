@@ -1,4 +1,5 @@
 package Package1;
+import Package2.*;
 
 public class Inventory {
 	private String name;
@@ -6,7 +7,9 @@ public class Inventory {
 	private int index;
 	
 	public Inventory(){
-		this.name = "Store Inventory\n";
+		this.name = "******************\n" 
+					+ "Store Inventory\n"
+					+ "******************\n";
 		this.products = new Product[10];
 		this.index = 0;
 	}
@@ -16,6 +19,7 @@ public class Inventory {
 		this.products = new Product[size];
 		this.index = 0;
 	}
+	
 	//Searches through the array by product name
 	public String searchByProductName(String object) {
 		String productsName = " ";
@@ -34,46 +38,56 @@ public class Inventory {
 			}
 			
 		}
-		return productsName;
+		return "******************\n"
+				+ "Search Engine\n" 
+				+ "******************\n"
+				+productsName;
 	}
 	
-	/*public boolean searchByProductName(String object) {
-		boolean found = false;
+	//Searches the array by product name and gets the quantity of the product
+	public int SearchForQty(String object) {
 		String productsName = " ";
+		int productQty = 0;
 		
 		for(int i = 0; i < products.length; i++) {
 			if(products[i] != null) {
-			productsName = products[i].getProductName();
+				productsName = products[i].getProductName();
 			}
 	
 			if(productsName.equalsIgnoreCase(object)) {
-				found = true;
+				productQty = products[i].getQty();
 				break;
 			}
+			else if(!(productsName.equalsIgnoreCase(object))) {
+				productQty = 1000000;
+			}
+			
 		}
-		return found;
+		return productQty;
 	}
 	
-	public String foundProduct(Boolean found, String productsName) {
-		String item = " ";
-		String sameItem = " ";
-		if(found == true) {
-			for(int i = 0; i < products.length; i++) {
-				if(products[i] != null) {
-					sameItem = products[i].getProductName();
-				}
-				
-				if(sameItem.equalsIgnoreCase(productsName)) {
-					item = products[i].toString();
-					break;
-				}
+	//Searches the array by product name and gets the price of the product
+	public double SearchForPrice(String object) {
+		String productsName = " ";
+		double productPrice = 0;
+	
+		for(int i = 0; i < products.length; i++) {
+			if(products[i] != null) {
+				productsName = products[i].getProductName();
 			}
+	
+			if(productsName.equalsIgnoreCase(object)) {
+				productPrice = products[i].getUnitCost();
+				break;
+			}
+			else if(!(productsName.equalsIgnoreCase(object))) {
+				productPrice = 1000000.00;
+			}
+			
 		}
-		else if(found == false) {
-			item = "No such item";
-		}
-		return item;
-	}*/
+		return productPrice;
+	}
+	
 	//adds a new product to the array
 	public void addProduct(Product product) {
 		if(index == products.length)
@@ -82,6 +96,7 @@ public class Inventory {
 		this.products[index] = product;
 		index++;
 	}
+	
 	//doubles the size of the array if it's full
 	private void ensureCapacity() {
 		int newSize = products.length * 2;
@@ -92,12 +107,16 @@ public class Inventory {
 		}
 		products = newArray;
 	}
+
 	//displays the products in the array
 	public String toString() {
 		String storeInventory = this.name;
 		for(int i = 0; i < index; i++) {
-			storeInventory += products[i].toString() + "\n";
+			storeInventory += products[i].toString() + "_________________________________________\n"
+					+ "\n";
 		}
 		return storeInventory;
 	}
+
 }
+
