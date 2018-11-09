@@ -7,6 +7,8 @@ public class Product {
 	private int qty;
 	private double unitCost;
 	private long productId;
+	private int backOrder;
+	private double backOrderTotal;
 	
 	public Product() {
 		this.productName = "No name";
@@ -51,10 +53,28 @@ public class Product {
 	public long getProductId() {
 		return productId;
 	}
-	//Displays product information
-	public String toString() {
-		return ("Product: " + productName + "\n" + "Quantity: " + qty + "\n" + "Unit Cost: $" + unitCost +
-				 "\n" + "Product Id: "+ productId + "\n");
+	
+	public void setBackOrder(int backOrder) {
+		this.backOrder = backOrder;
 	}
 	
+	public int getBackOrder(int qty) {
+		return backOrder;
+	}
+	
+	public double getBackOrderTotal() {
+		return backOrderTotal;
+	}
+	
+	public void setBackOrderTotal(double backOrderTotal) {
+		this.backOrderTotal = backOrderTotal;
+	}
+	//Displays product information
+	public String toString() {
+		return ("Product: " + this.productName + "\n" + "Quantity: " + this.qty + "\n" + "Unit Cost: $" + this.unitCost +
+				 "\n" + "Product Id: "+ this.productId + "\n" + "Backorder Quantity: " + this.backOrder + "\n"
+				 +"Backorder total: $" + this.backOrderTotal + "\n");
+	}
+
 }
+
